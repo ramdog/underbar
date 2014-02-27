@@ -191,6 +191,11 @@ var _ = { };
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var iteratorInv = function(item) {
+      return (typeof iterator === "undefined") ? item : !iterator(item);
+    };
+    return !_.every(collection, iteratorInv);
+
   };
 
 
