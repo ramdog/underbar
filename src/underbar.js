@@ -316,11 +316,11 @@ var _ = { };
   _.shuffle = function(array) {
     var remainder = array.slice();        
     var result = [];
-    for (var i = 0; i < array.length; i++) {      
+    _.each(array, function() {      
       var randPos = Math.floor(Math.random() * remainder.length);            
       result.push(remainder[randPos]);
       remainder = remainder.slice(0, randPos).concat(remainder.slice(randPos + 1));      
-    }
+    });
     return result;
   };
 
