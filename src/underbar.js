@@ -286,7 +286,7 @@ var _ = { };
       if (arg in calledArgs) {
         return calledArgs[arg];
       } else {
-        return func(arg);
+        return (calledArgs[arg] = func(arg));
       }
     };
   };
