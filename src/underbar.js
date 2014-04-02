@@ -427,6 +427,30 @@ var _ = { };
   //
   // See the Underbar readme for details.
   _.throttle = function(func, wait) {
+    var freeToRun = true;
+    var runOnReset = false;
+    var currentResult;
+
+    var reset = function() {
+      if (runOnReset) {
+        runOnReset = false;
+        freeToRun = true;  
+        return (currentResult = func());
+      }
+      freeToRun = true;
+    };
+
+    return function() {
+      if (freeToRun) {
+        freeToRun = false;
+        setTimeout(reset, wait);
+        return (currentResult = func());
+      } else {
+        runOnReset = true;
+        return currentResult;
+      }
+    };
+      
   };
 
 }).call(this);
