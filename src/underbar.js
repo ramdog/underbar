@@ -434,7 +434,7 @@ var _ = { };
     var reset = function() {
       if (runOnReset) {
         runOnReset = false;
-        freeToRun = true;  
+        setTimeout(reset, wait);
         return (currentResult = func());
       }
       freeToRun = true;
